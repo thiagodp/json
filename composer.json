@@ -1,0 +1,25 @@
+{
+	"name": "phputil/json",
+	"type": "library",
+	"description": "A JSON encoder and decoder that can also convert PHP objects with private or protected attributes.",
+	"keywords": [ "json", "encode", "decode", "private", "protected", "object", "php" ],
+	"homepage": "http://github.com/thiagodp/json",
+	"license": "LGPL-3",
+	"authors": [ { "name": "Thiago Delgado Pinto" } ],
+	"support": {
+		"issues": "https://github.com/thiagodp/json/issues",
+		"source": "https://github.com/thiagodp/json"
+	},
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.2.0",
+		"phputil/rtti": ">=1.0"
+	},
+	"require-dev": {
+    },	
+	"suggest": {
+	},
+	"autoload": {
+		"classmap": [ "lib/" ]
+	}
+}

@@ -10,7 +10,6 @@
 		"issues": "https://github.com/thiagodp/json/issues",
 		"source": "https://github.com/thiagodp/json"
 	},
-	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.2.0",
 		"phputil/rtti": ">=1.0"
@@ -20,6 +19,6 @@
 	"suggest": {
 	},
 	"autoload": {
-		"classmap": [ "lib/" ]
+		"psr-4": { "phputil\\": "lib/" }
 	}
 }

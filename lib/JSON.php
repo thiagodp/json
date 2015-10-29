@@ -5,8 +5,6 @@ namespace phputil;
  *  JSON encoder and decoder. Depends on phputil\RTTI.
  *  
  *  @author		Thiago Delgado Pinto
- *  @version	1.0
- *  
  *  @see		phputil\RTTI
  */
 class JSON {
@@ -42,6 +40,13 @@ class JSON {
 	 */
 	static function removeConversion( $className ) {
 		unset( self::$conversions[ $className ] );
+	}
+	
+	/**
+	 *  Remove all conversions.
+	 */
+	static function removeAllConversions() {
+		self::$conversions = array();
 	}
 
 	/**

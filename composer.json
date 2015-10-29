@@ -15,6 +15,7 @@
 		"phputil/rtti": ">=1.0"
 	},
 	"require-dev": {
+		"phputil/rtti": ">=1.0"
     },	
 	"suggest": {
 	},

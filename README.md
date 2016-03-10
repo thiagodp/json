@@ -47,9 +47,6 @@ echo JSON::encode( new User( 'Bob' ) ); // { "name": "Bob" }
 Converting an array of dynamic objects to JSON and back again.
 
 ```php
-<?php
-...
-
 $obj1 = new stdClass();
 $obj1->name = 'Bob';
 
@@ -62,7 +59,6 @@ echo $json, '<br />'; // [ { "name": "Bob" }, { "name": "Suzan", "age": 21 } ]
 
 $array = JSON::decode( $json );
 var_dump( $array ); // array with the two PHP dynamic objects 
-?>
 ```
 
 ### Example 3
@@ -70,9 +66,7 @@ var_dump( $array ); // array with the two PHP dynamic objects
 Ignoring `NULL` values.
 
 ```php
-<?php
 $arr = array( 'name' => 'Bob', 'phone' => null, 'age' => 21 ); // phone is null
 $json = JSON::encode( $arr, 'get', true ); // true for ignore nulls
 echo $json, '<br />'; // { "name": "Bob", "age": 21 }
-?>
 ```

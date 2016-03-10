@@ -4,9 +4,15 @@ A JSON encoder and decoder that can also convert PHP objects with private or pro
 
 Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti).
 
-Current [version](http://semver.org/): `1.0` (stable, used in production code)
+Current [version](http://semver.org/): `1.2` (stable, used in production code)
 
-Classes:
+### What's New
+
+* Version 1.2: Added optional parameter "ignoreNulls" in JSON::encode. Defaults to false.
+* Version 1.1: Added method JSON::decode.
+* Version 1.0: First release, with JSON::encode.
+
+### Classes
 
 * [phputil\JSON](https://github.com/thiagodp/rtti/blob/master/lib/JSON.php)
 
@@ -32,8 +38,7 @@ class User {
 	function getName() { return $this->name; }
 }
 
-// { "name": "Bob" }
-echo JSON::encode( new User( 'Bob' ) ); 
+echo JSON::encode( new User( 'Bob' ) ); // { "name": "Bob" }
 ?>
 ```
 
@@ -52,11 +57,22 @@ $obj2 = new stdClass();
 $obj2->name = 'Suzan';
 $obj2->age = 21;
 
-// [ { "name": "Bob" }, { "name": "Suzan", "age": 21 } ]
 $json = JSON::encode( array( $obj1, $obj2 ) );
-echo $json, '<br />';
+echo $json, '<br />'; // [ { "name": "Bob" }, { "name": "Suzan", "age": 21 } ]
 
 $array = JSON::decode( $json );
 var_dump( $array ); // array with the two PHP dynamic objects 
+?>
+```
+
+### Example 3
+
+Ignoring `NULL` values.
+
+```php
+<?php
+$arr = array( 'name' => 'Bob', 'phone' => null, 'age' => 21 ); // phone is null
+$json = JSON::encode( $arr, 'get', true );
+echo $json, '<br />'; // { "name": "Bob", "age": 21 }
 ?>
 ```

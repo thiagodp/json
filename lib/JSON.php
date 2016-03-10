@@ -12,17 +12,17 @@ class JSON {
 	private static $conversions = array();
 	
 	/**
-	 *  Add a conversion for objects of a certain class.
-	 *  If the class name is already mapped, the function is overridden.
+	 *  Adds a conversion for objects of a certain class.
+	 *  If the class name is already mapped, the current function is overridden.
 	 *  
-	 *  @param [in] $className Class name.
-	 *  @param [in] $function  Function that receives a value and returns a value.
+	 *  @param string	$className Class name.
+	 *  @param callable	$function  Function that receives a value and returns a value.
 	 *  
 	 *  @details Example:
-	 *  
-	 *  addConversion( 'DateTime', function( $value ) {
-	 *  	return $value->format( 'Y-m-d' );
-	 *  } );
+	 *
+	 *  	addConversion( 'DateTime', function( $value ) {
+	 *  		return $value->format( 'Y-m-d' );
+	 *  	} );
 	 *  
 	 */
 	static function addConversion( $className, $function ) {
@@ -35,33 +35,37 @@ class JSON {
 	}
 	
 	/**
-	 *  Remove a conversion for a certain class.
-	 *  @param [in] $className Class name.
+	 *  Removes a conversion for a certain class.
+	 *  
+	 *  @param string $className
 	 */
 	static function removeConversion( $className ) {
 		unset( self::$conversions[ $className ] );
 	}
 	
 	/**
-	 *  Remove all conversions.
+	 *  Removes all conversions.
 	 */
 	static function removeAllConversions() {
 		self::$conversions = array();
 	}
 
 	/**
-	 * Encode a data to JSON format.
-	 * 
-	 * @param data							the data to be serialized as JSON.
-	 * @param getterPrefixForObjectMethods	the prefix for getter methods (defaults to 'get').
-	 *										Ignore it for non object data.
-	 * @return								a string in JSON format.
+	 *  Encodes a variable into JSON format.
+	 *  
+	 *  @param	mixed $data								Data to be encoded.
+	 *  @param	string $getterPrefixForObjectMethods	Prefix used for getter methods.
+	 *  												OPTIONAL. Defaults to 'get'.
+	 *  @param	bool $ignoreNulls						Ignore null values when encoding.
+	 *  												OPTIONAL. Defaults to false.
+	 *  
+	 *  @return	string
 	 */
-	static function encode( $data, $getterPrefixForObjectMethods = 'get' ) {
+	static function encode( $data, $getterPrefixForObjectMethods = 'get', $ignoreNulls = false ) {
 		$type = gettype( $data );
 		$isObject = false;
 		switch ( $type ) {		
-			case 'string'	: return '"' . self::correct( $data ) . '"';
+			case 'string'	: return '"' . self::fixString( $data ) . '"';
 			case 'number'	: ; // continue
 			case 'integer'	: ; // continue
 			case 'float'	: ; // continue			
@@ -86,6 +90,8 @@ class JSON {
 					
 					$encodedValue = self::encode( $value, $getterPrefixForObjectMethods );
 					
+					if ( $ignoreNulls && 'null' === $encodedValue ) { continue; }
+					
 					if ( is_numeric( $key ) ) {
 						$output []= $encodedValue;
 					} else {
@@ -100,7 +106,7 @@ class JSON {
 	}
 	
 	/**
-	 *  Decode a JSON content to an object or array.
+	 *  Decodes a JSON content into an object or an array.
 	 *  
 	 *  @see http://php.net/manual/en/function.json-decode.php
 	 *  
@@ -127,14 +133,14 @@ class JSON {
 	}
 	
 	/**
-	 * Correct the string to be returned as JSON. This function is replacing addslashes that fails
+	 * Fixes a string to be returned as JSON. This function is replacing addslashes that fails
 	 * in convert \' to '. The javascript fails if a \' is found in a JSON string.
 	 *
-	 * @param str	the string to be corrected.
-	 * @return		a corrected string.
+	 * @param	string $str	String to be fixed.
+	 * @return	string
 	 */
-	private static function correct( $str ) {
-		// I know that the parameters in str_replace could be an array but I think it is more
+	private static function fixString( $str ) {
+		// We know that the parameters in str_replace could be an array but I think it is more
 		// readable to use this way.
 		$newStr = str_replace( '"', '\"', $str );
 		return str_replace( '\\\'', '\'', $newStr );

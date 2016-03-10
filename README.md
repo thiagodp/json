@@ -8,9 +8,9 @@ Current [version](http://semver.org/): `1.2` (stable, used in production code)
 
 ### What's New
 
-* Version 1.2: Added optional parameter "ignoreNulls" in JSON::encode. Defaults to false.
-* Version 1.1: Added method JSON::decode.
-* Version 1.0: First release, with JSON::encode.
+* Version `1.2`: Added optional parameter "ignoreNulls" in JSON::encode. Defaults to false.
+* Version `1.1`: Added method JSON::decode.
+* Version `1.0`: First release, with JSON::encode.
 
 ### Classes
 
@@ -72,7 +72,7 @@ Ignoring `NULL` values.
 ```php
 <?php
 $arr = array( 'name' => 'Bob', 'phone' => null, 'age' => 21 ); // phone is null
-$json = JSON::encode( $arr, 'get', true );
+$json = JSON::encode( $arr, 'get', true ); // true for ignore nulls
 echo $json, '<br />'; // { "name": "Bob", "age": 21 }
 ?>
 ```

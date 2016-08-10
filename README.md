@@ -30,7 +30,7 @@ Converting an object with `private` attribute.
 <?php
 require_once 'vendor/autoload.php'; // or 'RTTI.php' when not using composer
 
-use phputil\JSON;
+use \phputil\JSON;
 
 class User {
 	private $name;
@@ -68,5 +68,21 @@ Ignoring `NULL` values.
 ```php
 $arr = array( 'name' => 'Bob', 'phone' => null, 'age' => 21 ); // phone is null
 $json = JSON::encode( $arr, 'get', true ); // true for ignore nulls
-echo $json, '<br />'; // { "name": "Bob", "age": 21 }
+echo $json; // { "name": "Bob", "age": 21 }
+```
+
+### Example 4
+
+Using value conversors.
+
+```php
+JSON::addConversion( 'DateTime', function( $value ) {
+	return $value->format( 'Y-m-d' ); // transforms into a formatted string
+} );
+
+$obj = new stdClass;
+$obj->user = 'bob';
+$obj->birthdate = new DateTime( "1980-12-31" ); // object
+
+echo JSON::encode( $obj ); // { "user": "bob", "birthdate": "1980-12-31" }
 ```

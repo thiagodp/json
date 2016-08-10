@@ -6,7 +6,7 @@ We use [semantic versioning](http://semver.org/). See [our releases](https://git
 
 ### Classes
 
-* [phputil\JSON](https://github.com/thiagodp/rtti/blob/master/lib/JSON.php)
+* [phputil\JSON](https://github.com/thiagodp/json/blob/master/lib/JSON.php)
 
 ### Installation
 

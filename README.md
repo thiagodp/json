@@ -2,25 +2,18 @@
 
 A JSON encoder and decoder that can also convert PHP objects with private or protected attributes.
 
-Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti).
-
-Current [version](http://semver.org/): `1.2` (stable, used in production code)
-
-### What's New
-
-* Version `1.2`: Added optional parameter "ignoreNulls" in JSON::encode. Defaults to false.
-* Version `1.1`: Added method JSON::decode.
-* Version `1.0`: First release, with JSON::encode.
+We use [semantic versioning](http://semver.org/). See [our releases](https://github.com/thiagodp/json/releases).
 
 ### Classes
 
-* [phputil\JSON](https://github.com/thiagodp/rtti/blob/master/lib/JSON.php)
+* [phputil\JSON](https://github.com/thiagodp/json/blob/master/lib/JSON.php)
 
 ### Installation
 
 ```command
 composer require phputil/json
 ```
+Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti).
 
 ### Example 1
 
@@ -80,7 +73,7 @@ JSON::addConversion( 'DateTime', function( $value ) {
 	return $value->format( 'Y-m-d' ); // transforms into a formatted string
 } );
 
-$obj = new stdClass;
+$obj = new stdClass();
 $obj->user = 'bob';
 $obj->birthdate = new DateTime( "1980-12-31" ); // object
 

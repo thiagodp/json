@@ -2,6 +2,8 @@
 
 A JSON encoder and decoder that can also convert PHP objects with private or protected attributes.
 
+[![Build Status](https://travis-ci.org/thiagodp/JSON.svg?branch=master)](https://travis-ci.org/thiagodp/JSON)
+
 We use [semantic versioning](http://semver.org/). See [our releases](https://github.com/thiagodp/json/releases).
 
 ### Classes

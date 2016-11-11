@@ -14,6 +14,20 @@ class Dummy { // phputil\tests\Dummy
 	function getValue() { return $this->value; }
 }
 
+class DummyWithCall {
+	
+	private $a = 1;
+	protected $b = 2;
+	public $c = 3;
+	
+    public function __call( $name, $args ){
+		if ( $name === 'getA' ) { return $this->a; }
+		if ( $name === 'getB' ) { return $this->b; }
+		if ( $name === 'getC' ) { return $this->c; }
+	}
+	
+}
+
 
 /**
  * JSON Test
@@ -69,6 +83,13 @@ class JSONTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals( $value, $decoded );
 	}	
+	
+	function test_accepts_class_with_magic_call() {
+		$obj = new DummyWithCall();
+		$encoded = JSON::encode( $obj );
+
+		$this->assertEquals( '{ "a": 1, "b": 2, "c": 3 }', $encoded );
+	}
 }
 
 ?>

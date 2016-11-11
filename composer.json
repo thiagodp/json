@@ -12,11 +12,8 @@
 	},
 	"require": {
 		"php": ">=5.2.0",
-		"phputil/rtti": ">=1.3"
+		"phputil/rtti": ">=1.4"
 	},
-	"require-dev": {
-		"phputil/rtti": ">=1.0"
-    },	
 	"suggest": {
 	},
 	"autoload": {

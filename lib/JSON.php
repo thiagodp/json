@@ -96,7 +96,7 @@ class JSON {
 						$output []= $encodedValue;
 					} else {
 						$encodedKey = self::encode( $key, $getterPrefixForObjectMethods );
-						$output []= $encodedKey . ' : ' . $encodedValue;
+						$output []= $encodedKey . ': ' . $encodedValue;
 					}
 				}
 				return $isObject ? '{ ' . implode( ', ', $output ) . ' }' : '[ ' . implode( ', ', $output ) . ' ]';

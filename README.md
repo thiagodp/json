@@ -2,7 +2,7 @@
 
 A JSON encoder and decoder that can also convert PHP objects with private or protected attributes.
 
-[![Build Status](https://travis-ci.org/thiagodp/JSON.svg?branch=master)](https://travis-ci.org/thiagodp/JSON)
+[![Build Status](https://travis-ci.org/thiagodp/json.svg?branch=master)](https://travis-ci.org/thiagodp/json)
 
 We use [semantic versioning](http://semver.org/). See [our releases](https://github.com/thiagodp/json/releases).
 
@@ -15,7 +15,7 @@ We use [semantic versioning](http://semver.org/). See [our releases](https://git
 ```command
 composer require phputil/json
 ```
-Depends only on [phputil\RTTI](https://travis-ci.org/thiagodp/json.svg?branch=master). Requires PHP >= `5.4`.
+Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti). Requires PHP >= `5.4`.
 
 ### Example 1
 

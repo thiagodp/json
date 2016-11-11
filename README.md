@@ -15,7 +15,7 @@ We use [semantic versioning](http://semver.org/). See [our releases](https://git
 ```command
 composer require phputil/json
 ```
-Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti).
+Depends only on [phputil\RTTI](https://github.com/thiagodp/rtti). Requires PHP >= `5.4`.
 
 ### Example 1
 

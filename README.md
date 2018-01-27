@@ -117,3 +117,7 @@ $obj->birthdate = new DateTime( "12/31/1980" ); // month/day/year
 
 echo JSON::encode( $obj ); // { "user": "bob", "birthdate": "1980-12-31" }
 ```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/) (c) [Thiago Delgado Pinto](https://github.com/thiagodp)
